@@ -1,19 +1,37 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { Text, Button, View } from 'react-native';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
+function TV(props) {
+  const [isOff, setIsOff] = useState(true);
+
+  return(
+  <View style={{
+    justifyContent: "center",
+    alignItems: "center"
+  }}>
+    <Text>
+     {"\n\n\n"}
+     This is {props.name} TV, and it is {isOff ? "OFF" : "Turned On"}!
+    </Text>
+    <Button 
+    onPress= {() => {
+      setIsOff(false);
+    }}
+    disabled={!isOff}
+    title={isOff ? "Turn Me On, Please!" : "Thank You!"}
+    />
+  </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function MultiTVs() {
+  return(
+    <View>
+      <TV name = "LG" />
+      <TV name = "Sony" />
+      <TV name = "Vizio" />
+      <TV name = "Mitsubishi" />
+    </View>
+  );
+}
+ 
